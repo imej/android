@@ -1,0 +1,47 @@
+++++++++++2015/11/01++++++++
+1. Downloaded sample apps from https://code.google.com/p/apps-for-android/
+2. Created a new repositary on github named: android
+
+++++++++++2015/10/25++++++++
+Reading Smashing Android UI. Currently at page 87 (Chapter 7)
+
+++++++++++2015/10/19++++++++
+Need to study KSOAP2 
+
+++++++++++2015/10/17++++++++
+1. Found out that the return is not a XML file, it is a string. 
+   need to find a way to extract XML from the string.
+
+++++++++++2015/10/16++++++++
+1. Realized that we need to get the selected items of the spinners when the Search button
+   is clicked. 
+2. Attached the on click event to the search button.
+3. Confirmed it worked to pass country and city to the webservice.
+4. Need to work on the parse and display of the returned XML.
+
+++++++++++2015/10/15++++++++
+1. Tried to get selected items from the two spinners, no luck.
+2. Might want to create two handler, and attach to each spinner.
+
+++++++++++2015/10/14++++++++
+1. Start working on the weather app.
+ (1) Created a new project "WeatherCheck"
+ (2) Connected to the web services (hard-coded url)
+ (3) Added two spinners (dropdowns) as country and city
+
+++++++++++2015/10/08++++++++
+1. HttpURLConnection tested successfully.
+2. Planning to create a app to get weather of a given city
+   web services: http://www.webservicex.net/globalweather.asmx/GetWeather?CityName=Jasper&CountryName=Canada
+
+++++++++++2015/10/07++++++++
+It turns out that class HttpClient has been deprecated. 
+HttpURLConnection is recommended. 
+
+++++++++++2015/10/06++++++++
+1. Cloned the source code of the busy code's guide book to local 
+   (C:\Users\user\AndroidStudioProjects\cw-omnibus)
+2. Studying HTTPClient:
+  (1) Following tutorial: http://hmkcode.com/android-internet-connection-using-http-get-httpclient/
+      - Application "HTTPGet" created.
+      - 
