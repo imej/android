@@ -1,3 +1,6 @@
+++++++++++2015/11/03++++++++
+Drawing on a View: Planing to play the snake game (your-sdk-directory/samples/Snake/)
+
 ++++++++++2015/11/01++++++++
 In order to be able to understand Amazed, started studying Canvas and Drawables.
 http://developer.android.com/guide/topics/graphics/2d-graphics.html
