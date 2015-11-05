@@ -18,8 +18,6 @@ package com.rocksys.user.mysnake;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,7 +38,7 @@ public class Snake extends Activity {
     /**
      * Constants for desired direction of moving the snake
      */
-    public static int MOVE_LEFT = 0;
+    public static int MOVE_LEFT = 1;
     public static int MOVE_UP = 1;
     public static int MOVE_DOWN = 2;
     public static int MOVE_RIGHT = 3;
@@ -52,35 +50,91 @@ public class Snake extends Activity {
     /**
      * Called when Activity is first created. Turns off the title bar, sets up the content views,
      * and fires up the SnakeView.
-     *
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.snake_layout);
 
         mSnakeView = (SnakeView) findViewById(R.id.snake);
+        mSnakeView.setDependentViews((TextView) findViewById(R.id.text),
+                findViewById(R.id.arrowContainer), findViewById(R.id.background));
+
+        if (savedInstanceState == null) {
+            // We were just launched -- set up a new game
+            mSnakeView.setMode(SnakeView.READY);
+        } else {
+            // We are being restored
+            Bundle map = savedInstanceState.getBundle(ICICLE_KEY);
+            if (map != null) {
+                mSnakeView.restoreState(map);
+            } else {
+                mSnakeView.setMode(SnakeView.PAUSE);
+            }
+        }
+        mSnakeView.setOnTouchListener(new OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mSnakeView.getGameState() == SnakeView.RUNNING) {
+                    // Normalize x,y between 0 and 1
+                    float x = event.getX() / v.getWidth();
+                    float y = event.getY() / v.getHeight();
+
+                    // Direction will be [0,1,2,3] depending on quadrant
+                    int direction = 0;
+                    direction = (x > y) ? 1 : 0;
+                    direction |= (x > 1 - y) ? 2 : 0;
+
+                    // Direction is same as the quadrant which was clicked
+                    mSnakeView.moveSnake(direction);
+
+                } else {
+                    // If the game is not running then on touching any part of the screen
+                    // we start the game by sending MOVE_UP signal to SnakeView
+                    mSnakeView.moveSnake(MOVE_UP);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_snake, menu);
-        return true;
+    protected void onPause() {
+        super.onPause();
+        // Pause the game along with the activity
+        mSnakeView.setMode(SnakeView.PAUSE);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onSaveInstanceState(Bundle outState) {
+        // Store the game state
+        outState.putBundle(ICICLE_KEY, mSnakeView.saveState());
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    /**
+     * Handles key events in the game. Update the direction our snake is traveling based on the
+     * DPAD.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent msg) {
+
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_UP:
+                mSnakeView.moveSnake(MOVE_UP);
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                mSnakeView.moveSnake(MOVE_RIGHT);
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                mSnakeView.moveSnake(MOVE_DOWN);
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                mSnakeView.moveSnake(MOVE_LEFT);
+                break;
         }
 
-        return super.onOptionsItemSelected(item);
+        return super.onKeyDown(keyCode, msg);
     }
 }

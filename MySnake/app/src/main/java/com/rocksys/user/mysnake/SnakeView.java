@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.snake;
+package com.rocksys.user.mysnake;
 
 import android.content.Context;
 import android.content.res.Resources;
