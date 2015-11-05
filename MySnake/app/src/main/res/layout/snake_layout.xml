@@ -15,9 +15,9 @@
 -->
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res/com.example.android.snake">
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <com.example.android.snake.BackgroundView
+  <com.rockysys.user.mysnake.BackgroundView
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,7 +27,7 @@
     app:colorSegmentFour="@color/muted_green"
      />
 
-  <com.example.android.snake.SnakeView
+  <com.rockysys.user.mysnake.SnakeView
     android:id="@+id/snake"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
