@@ -45,7 +45,7 @@ public class Snake extends Activity {
 
     private static String ICICLE_KEY = "snake-view";
 
-    private SnakeView mSnakeView;
+    // private SnakeView mSnakeView;
 
     /**
      * Called when Activity is first created. Turns off the title bar, sets up the content views,
@@ -57,6 +57,7 @@ public class Snake extends Activity {
 
         setContentView(R.layout.snake_layout);
 
+        /*
         mSnakeView = (SnakeView) findViewById(R.id.snake);
         mSnakeView.setDependentViews((TextView) findViewById(R.id.text),
                 findViewById(R.id.arrowContainer), findViewById(R.id.background));
@@ -98,25 +99,27 @@ public class Snake extends Activity {
                 return false;
             }
         });
+        */
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         // Pause the game along with the activity
-        mSnakeView.setMode(SnakeView.PAUSE);
+        //mSnakeView.setMode(SnakeView.PAUSE);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         // Store the game state
-        outState.putBundle(ICICLE_KEY, mSnakeView.saveState());
+        //outState.putBundle(ICICLE_KEY, mSnakeView.saveState());
     }
 
     /**
      * Handles key events in the game. Update the direction our snake is traveling based on the
      * DPAD.
      */
+    /*
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent msg) {
 
@@ -137,4 +140,5 @@ public class Snake extends Activity {
 
         return super.onKeyDown(keyCode, msg);
     }
+    */
 }
