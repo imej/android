@@ -148,9 +148,9 @@ public class SnakeView extends TileView {
         Resources r = this.getContext().getResources();
 
         resetTiles(4);
-        loadTile(RED_STAR, r.getDrawable(R.drawable.redstar, null));
-        loadTile(YELLOW_STAR, r.getDrawable(R.drawable.yellowstar, null));
-        loadTile(GREEN_STAR, r.getDrawable(R.drawable.greenstar, null));
+        loadTile(RED_STAR, r.getDrawable(R.drawable.redstar));
+        loadTile(YELLOW_STAR, r.getDrawable(R.drawable.yellowstar));
+        loadTile(GREEN_STAR, r.getDrawable(R.drawable.greenstar));
 
     }
 
@@ -161,7 +161,7 @@ public class SnakeView extends TileView {
         // For now we're just going to load up a short default eastbound snake
         // that's just turned north
 
-        mSnakeTrail.add(new Coordinate(7, 7));
+        mSnakeTrail.add(new Coordinate(7, 7))
         mSnakeTrail.add(new Coordinate(6, 7));
         mSnakeTrail.add(new Coordinate(5, 7));
         mSnakeTrail.add(new Coordinate(4, 7));
