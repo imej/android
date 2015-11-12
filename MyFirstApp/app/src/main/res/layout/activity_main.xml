@@ -10,11 +10,19 @@
         app:colorSegmentThree="@color/muted_blue"
         app:colorSegmentFour="@color/muted_green"
         />
-    <com.rocksys.user.myfirstapp.TileView
-        android:id="@+id/tile"
+    <com.rocksys.user.myfirstapp.SnakeView
+        android:id="@+id/snake"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:tileSize="24dp"/>
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:textColor="@color/text_violet"
+        android:textSize="24sp"
+        android:visibility="visible" />
     <RelativeLayout android:id="@+id/arrowContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -84,7 +84,7 @@ public class Snake extends Activity {
                     float y = event.getY() / v.getHeight();
 
                     // Direction will be [0,1,2,3] depending on quadrant
-                    int direction = 0;
+                    int direction;
                     direction = (x > y) ? 1 : 0;
                     direction |= (x > 1 - y) ? 2 : 0;
 

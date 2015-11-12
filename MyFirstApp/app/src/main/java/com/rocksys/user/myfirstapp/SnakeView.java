@@ -161,7 +161,7 @@ public class SnakeView extends TileView {
         // For now we're just going to load up a short default eastbound snake
         // that's just turned north
 
-        mSnakeTrail.add(new Coordinate(7, 7))
+        mSnakeTrail.add(new Coordinate(7, 7));
         mSnakeTrail.add(new Coordinate(6, 7));
         mSnakeTrail.add(new Coordinate(5, 7));
         mSnakeTrail.add(new Coordinate(4, 7));
