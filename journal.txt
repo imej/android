@@ -1,3 +1,5 @@
+++++++++++2015/11/14++++++++
+HanderTest added. It is a test to the Handler class which can be used to delay an action.
 ++++++++++2015/11/07++++++++
 Converting MyFirstApp to Snake.
 
