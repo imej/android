@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">MySnake</string>
-    <string name="mode_ready">Snake\nPress Up To Play</string>
-    <string name="mode_pause">Paused\nPress Up To Resume</string>
-    <string name="mode_lose">Game Over\nScore: %1$d \nPress Up To Play</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-</resources>
