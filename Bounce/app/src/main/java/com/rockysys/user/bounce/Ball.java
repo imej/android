@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 
+import java.util.Random;
+
 public class Ball extends TileView {
 
     private static final String TAG = "Bounching";
@@ -28,7 +30,7 @@ public class Ball extends TileView {
      * mMoveDelay: number of milliseconds
      * between snake movements. This will decrease as apples are captured.
      */
-    private long mMoveDelay = 600;
+    private long mMoveDelay = 300;
 
     /**
      * mLastMove: Tracks the absolute time when the ball last moved, and it used to determine if a
@@ -40,6 +42,8 @@ public class Ball extends TileView {
      * currentPos: Current position of the ball
      */
     private Coordinate mCurrentPos;
+
+    private static final Random RNG = new Random();
 
     /**
      * Create a simple handler that we can use to cause animation to happen. We set ourselves as a
@@ -92,8 +96,9 @@ public class Ball extends TileView {
     }
 
     public void startBouncing() {
-        mCurrentPos = new Coordinate(7, 7);
+        // mCurrentPos = new Coordinate(7, 7);
         mDirection = UP;
+        update();
     }
 
     /**
@@ -161,23 +166,32 @@ public class Ball extends TileView {
      * in order to simulate motion. If we want to grow him, we don't subtract from the rear.
      */
     private void updateBall() {
-        if (mDirection == UP) {
-            if (mCurrentPos.y > 1) {
-                mCurrentPos.y--;
-            } else {
-                mCurrentPos.y++;
-                mDirection = DOWN;
-            }
-        } else {
-            if (mCurrentPos.y < mYTileCount - 1) {
-                mCurrentPos.y++;
-            } else {
-                mCurrentPos.y--;
-                mDirection = UP;
-            }
-        }
+        if (mYTileCount > 1 && mXTileCount > 1) {
+            if (mCurrentPos == null || mCurrentPos.x > mXTileCount || mCurrentPos.y > mYTileCount) {
+                int newX = 1 + RNG.nextInt(mXTileCount - 2);
+                int newY = 1 + RNG.nextInt(mYTileCount - 2);
 
-        setTile(RED_STAR, mCurrentPos.x, mCurrentPos.y);
+                mCurrentPos = new Coordinate(newX, newY);
+            }
+
+            if (mDirection == UP) {
+                if (mCurrentPos.y > 1) {
+                    mCurrentPos.y--;
+                } else {
+                    mCurrentPos.y++;
+                    mDirection = DOWN;
+                }
+            } else {
+                if (mCurrentPos.y < mYTileCount - 2) {
+                    mCurrentPos.y++;
+                } else {
+                    mCurrentPos.y--;
+                    mDirection = UP;
+                }
+            }
+
+            setTile(RED_STAR, mCurrentPos.x, mCurrentPos.y);
+        }
     }
 
     /**
